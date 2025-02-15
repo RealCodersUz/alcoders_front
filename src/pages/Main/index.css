@@ -1,0 +1,15 @@
+.card:hover h4 {
+  bottom: 40%;
+}
+
+.card:hover p {
+  bottom: 5%;
+}
+.card {
+ 
+  background: #6c757d; /* Secondary color */
+  border-radius: 10px;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}

@@ -16,7 +16,7 @@ const Appbar = () => {
   return (
     <Navbar
       expand="lg"
-      className="bg-white shadow-sm py-3"
+      className="bg-white shadow-md py-3 opacity-1"
       style={{
         width: "100vw",
         position: "fixed",

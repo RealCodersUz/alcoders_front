@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Appbar from "./components/Appbar";
 import Footer from "./components/Footer";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Container className="mt-5 pt-5">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/contact/*" element={<Contact />} />
           {/* <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} /> */}
         </Routes>
