@@ -112,13 +112,13 @@ const Home = () => {
         </div>
       </section>
       <section>
-        <div className="container mt-5 w-100 ">
+        <div className="container pt-5 w-100 ">
           {/* <h3 className="text-center">{t("services")}</h3> */}
           <h3 className="text-center pb-5">Bizning Xizmatlar</h3>
           <div className="d-flex flex flex-row flex-wrap gap-5">
             <Card
               id="1"
-              url="/public/pexels-fotios-photos-2363482.jpg"
+              url="/pexels-fotios-photos-2363482.jpg"
               title="Web Sites (Korporative)"
               subtitle="Alcoders is an IT company that provides its clients with a variety
             of IT services. We talk to each client individually, explaining what

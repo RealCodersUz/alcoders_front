@@ -44,7 +44,7 @@ const Appbar = () => {
           </Nav>
         </Navbar.Collapse>
 
-        <Dropdown>
+        <Dropdown style={{borderColor:"#4d4d57"}}>
           <Dropdown.Toggle variant="outline-dark">
             🌐 {i18n.language.toUpperCase()}
           </Dropdown.Toggle>

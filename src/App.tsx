@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Appbar from "./components/Appbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -17,8 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact/*" element={<Contact />} />
-          {/* <Route path="/about" element={<About />} />
-          <Route path="*" element={<NotFound />} /> */}
+          <Route path="/about" element={<About />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
       </Container>
       <Footer />
