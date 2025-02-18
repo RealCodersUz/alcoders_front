@@ -8,12 +8,12 @@ const Home = () => {
   return (
     <>
       <section className="d-flex flex-row justify-content-center g-4 align-item-center py-5">
-        <div className="container mt-5 w-75 my-5">
+        <div data-aos="fade-right" className="container mt-5 w-75 my-5">
           <h3>{t("welcome")}</h3>
           <h2 className="my-5 fs-1">{t("slogan")}</h2>
           <h5>{t("subtitle")}</h5>
         </div>
-        <img src="/hero.jpg" alt="hero" width="800px" />
+        <img src="/hero.jpg" alt="hero" width="800px" className="heroimg" />
       </section>
       <section>
         {/* <div className="container mt-5 w-75 my-5">
@@ -79,7 +79,10 @@ const Home = () => {
           ></div>
 
           <div style={{ position: "relative", zIndex: "1", maxWidth: "800px" }}>
-            <h1 style={{ fontSize: "3rem", fontWeight: "bold", margin: "0" }}>
+            <h1
+              style={{ fontSize: "3rem", fontWeight: "bold", margin: "0" }}
+              data-aos="zoom-in-up"
+            >
               We empower you to succeed in the digital world
             </h1>
             <p
@@ -88,6 +91,7 @@ const Home = () => {
                 marginBottom: "20px",
                 paddingTop: "4rem",
               }}
+              data-aos="zoom-out"
             >
               Alcoders is an IT company that provides its clients with a variety
               of IT services. We talk to each client individually, explaining

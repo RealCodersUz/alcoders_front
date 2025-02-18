@@ -9,8 +9,19 @@ import Appbar from "./components/Appbar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animatsiya davomiyligi (ms)
+      once: false, // Bir marta ishlashi uchun
+      offset: 200, // 200px pastga tushganda ishga tushadi
+      delay: 100,
+    });
+  }, []);
   return (
     <Router>
       <Appbar />

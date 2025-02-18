@@ -18,10 +18,12 @@ const Appbar = () => {
       expand="lg"
       className="bg-white shadow-md py-3 opacity-1"
       style={{
-        width: "100vw",
         position: "fixed",
         top: "0",
         left: "0",
+        width: "100%",
+        background: "white",
+        zIndex: "1050",
       }}
     >
       <Container>
@@ -44,7 +46,7 @@ const Appbar = () => {
           </Nav>
         </Navbar.Collapse>
 
-        <Dropdown style={{borderColor:"#4d4d57"}}>
+        <Dropdown style={{ borderColor: "#4d4d57" }}>
           <Dropdown.Toggle variant="outline-dark">
             🌐 {i18n.language.toUpperCase()}
           </Dropdown.Toggle>

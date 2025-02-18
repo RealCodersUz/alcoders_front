@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "./index.css";
 interface CardProps {
   id: string;
   url: string;
@@ -11,7 +11,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ id, url, title, subtitle }) => {
   return (
-    <div>
+    <div data-aos="flip-right">
       <div
         className="bg-secondary card flex flex-row  items-end justify-center shadow-lg rounded-lg transition-all duration-500 hover:shadow-2xl bordered mb-4"
         style={{ height: "400px", width: "600px" }}

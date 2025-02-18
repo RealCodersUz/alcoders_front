@@ -1,41 +1,58 @@
 import React from "react";
-import "./index.css";
+import { Container, Row, Col, Form, Button, Image } from "react-bootstrap";
 
-const Contact = () => {
+const Contact: React.FC = () => {
   return (
-    <section className="contact">
-      {/* Formaga aloqasi bo‘lmagan matn */}
-      <div className="contact-content">
-        <h2>Get in Touch</h2>
-        <p>Feel free to contact with us</p>
+    <section className="contact-section">
+      <Container>
+        <Row className="align-items-center">
+          {/* Rasm faqat katta ekranda ko‘rinadi */}
 
-        {/* Forma */}
-        <form>
-          <span>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              required
-            />
-          </span>
-          <span>
-            <input
-              type="phone"
-              id="phone"
-              name="phone"
-              placeholder="Phone number"
-              required
-            />
-          </span>
-          <span>
-            <textarea id="message" name="message" placeholder="Opinions" />
-          </span>
+          {/* Forma har doim ko‘rinadi */}
+          <Col xs={12} lg={6}>
+            <div className="contact-card p-4 text-center">
+              <h2 className="mb-3">Get in Touch</h2>
+              <p>
+                Feel free to contact us for any inquiries or collaborations.
+              </p>
 
-          <input type="submit" value="Submit" className=" btn btn-secondary" />
-        </form>
-      </div>
+              <Form>
+                <Form.Group className="mb-3">
+                  <Form.Control type="text" placeholder="Name" required />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    type="tel"
+                    placeholder="Phone number"
+                    required
+                  />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Your Message"
+                  />
+                </Form.Group>
+
+                <Button variant="dark" type="submit" className="w-100">
+                  Submit
+                </Button>
+              </Form>
+            </div>
+          </Col>
+          <Col lg={4} className="d-none d-lg-block">
+            <Image
+              src="/send.svg"
+              alt="Contact Us"
+              fluid
+              className="contact-image"
+            />
+          </Col>
+        </Row>
+      </Container>
     </section>
   );
 };

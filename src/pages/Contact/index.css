@@ -1,73 +1,22 @@
-.contact {
-  width: 100%;
-  height: 70vh; /* To'liq ekran */
+.contact-section {
+  background: #f8f9fa; /* Yorug‘roq fon */
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Formani chap tomonga joylash */
-  background-image: url("/pexels-jonathanborba-3134231.jpg"); /* Rasmni almashtiring */
-  background-size: cover; /* Rasmni to'liq sig‘dirish */
-  background-position: center; /* Markazga olish */
-  background-repeat: no-repeat; /* Rasm takrorlanmasin */
-  padding-left: 10%; /* Formani biroz ichkariga surish */
-  color: white;
+  justify-content: center;
 }
 
-.contact-content {
-  font-size: 1.5rem;
-  max-width: 40%;
-  color: #191c0fac;
+.contact-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.contact form {
-  background: rgba(255, 255, 255, 0.7); /* Formani o‘qilishi uchun fon */
-  padding: 40px 20px 40px 0px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 45vw;
-  display: flex;
-  flex-direction: column;
-}
-
-.contact form span {
-  color: #191c0fac;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-}
-
-.contact form label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.contact form input,
-.contact form textarea {
-  min-width: 80%;
-  margin: 0 auto;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.contact form textarea {
-  height: 100px;
-  resize: none;
-}
-
-.contact form .btn {
-  cursor: pointer;
-  background-color: #413119;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1.2rem;
-  font-weight: 800;
-  border-radius: 5px;
-  transition: 0.3s;
-}
-
-.contact form .btn:hover {
-  background-color: #0056b3;
+.contact-image {
+  width: 350px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
