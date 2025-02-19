@@ -12,15 +12,12 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ id, url, title, subtitle }) => {
   return (
     <div data-aos="flip-right">
-      <div
-        className="bg-secondary card flex flex-row  items-end justify-center shadow-lg rounded-lg transition-all duration-500 hover:shadow-2xl bordered mb-4"
-        style={{ height: "400px", width: "600px" }}
-      >
+      <div className="bg-secondary card  shadow-lg rounded-lg transition-all duration-500 hover:shadow-2xl bordered mb-4">
         <img
           src={url}
           alt="cd_img"
-          width="300px"
-          height="400px"
+          // width="300px"
+          // height="400px"
           style={{ objectFit: "cover" }}
         />
         <div className="p-4">

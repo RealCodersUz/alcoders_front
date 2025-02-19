@@ -33,7 +33,7 @@ const Footer = () => {
           </Col>
 
           {/* O'ng tomonda: Linklar */}
-          <Col md={4} className="text-md-end text-center">
+          <Col md={4} className="text-md-end text-center d-flex flex-col">
             <Link
               to="/privacy-policy"
               className="text-light text-decoration-none mx-2"
@@ -46,6 +46,12 @@ const Footer = () => {
             >
               Terms of Service
             </Link>
+            <a
+              href="tel:+998916223406"
+              className="text-light text-decoration-none mx-2"
+            >
+              Contact:+998916223406
+            </a>
           </Col>
         </Row>
       </Container>

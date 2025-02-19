@@ -43,6 +43,9 @@ const Appbar = () => {
             <Nav.Link as={Link} to="/contact">
               {t("navbar.contact")}
             </Nav.Link>
+            <Nav.Link as={Link} to="/news">
+              {t("navbar.news")}
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
 

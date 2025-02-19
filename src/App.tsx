@@ -12,6 +12,8 @@ import About from "./pages/About";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import NewsPage from "./pages/News";
+import NotFound from "./pages/NotFound";
 
 function App() {
   useEffect(() => {
@@ -30,7 +32,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact/*" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
       <Footer />

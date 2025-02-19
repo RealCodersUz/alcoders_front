@@ -2,7 +2,8 @@
   "navbar": {
     "home": "Home",
     "about": "About Us",
-    "contact": "Contact"
+    "contact": "Contact",
+    "news": "News"
   },
   "welcome": "Welcome to our website!",
   "slogan": "Our motto: Think innovatively, don't torture yourself!",

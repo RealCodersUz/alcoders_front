@@ -4,6 +4,7 @@ import "./index.css"; // Optional for extra styling
 import { useNavigate } from "react-router-dom";
 
 const About: React.FC = () => {
+  // eslint-disable-next-line prefer-const
   let navigate = useNavigate();
   return (
     <div className="about-page">
@@ -79,6 +80,7 @@ const About: React.FC = () => {
             <Col md={4} key={index} className="g-5" data-aos="flip-down">
               <Card
                 className="text-center p-3 shadow"
+                style={{ maxWidth: "400px" }}
                 onClick={() => navigate(`/contact/${service.id}`)}
               >
                 <Card.Body>
