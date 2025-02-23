@@ -1,7 +1,6 @@
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import Flag from "react-world-flags";
 
 const Appbar = () => {
   const { t, i18n } = useTranslation();
@@ -15,10 +14,10 @@ const Appbar = () => {
 
   // Til kodi => Bayroq + Til nomi
   const languageOptions: { [key: string]: { flag: string; label: string } } = {
-    en: { flag: "GB", label: "English" },
-    uz: { flag: "UZ", label: "O‘zbek" },
-    ru: { flag: "RU", label: "Русский" },
-    uz_cyrl: { flag: "UZ", label: "Ўзбек (Кирил)" },
+    en: { flag: "gb", label: "English" },
+    uz: { flag: "uz", label: "O‘zbek" },
+    ru: { flag: "ru", label: "Русский" },
+    uz_cyrl: { flag: "uz", label: "Ўзбек (Кирил)" },
   };
 
   return (
@@ -59,8 +58,11 @@ const Appbar = () => {
 
         <Dropdown>
           <Dropdown.Toggle variant="outline-dark">
-            <Flag
-              code={languageOptions[i18n.language]?.flag}
+            <img
+              src={`https://flagcdn.com/w40/${
+                languageOptions[i18n.language]?.flag
+              }.png`}
+              alt={i18n.language}
               style={{ width: 20, height: 15, marginRight: 5 }}
             />
             {languageOptions[i18n.language]?.label}
@@ -68,8 +70,9 @@ const Appbar = () => {
           <Dropdown.Menu>
             {Object.entries(languageOptions).map(([lng, { flag, label }]) => (
               <Dropdown.Item key={lng} onClick={() => changeLanguage(lng)}>
-                <Flag
-                  code={flag}
+                <img
+                  src={`https://flagcdn.com/w40/${flag}.png`}
+                  alt={lng}
                   style={{ width: 20, height: 15, marginRight: 5 }}
                 />
                 {label}
