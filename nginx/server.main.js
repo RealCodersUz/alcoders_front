@@ -20,6 +20,6 @@ app.get("/*", (req, res) => {
   res.sendFile(distHtmlPath);
 });
 
-app.listen(7001, () => {
-  console.log("Frontend ishlayapti, 7001-portni eshitishni kutamiz...");
+app.listen(5001, () => {
+  console.log("Frontend ishlayapti, 5001-portni eshitishni kutamiz...");
 });
