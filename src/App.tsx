@@ -14,6 +14,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import NewsPage from "./pages/News";
 import NotFound from "./pages/NotFound";
+import TermsAndConditions from "./pages/Terms";
+import PrivacyPolicy from "./pages/Privacy";
 
 function App() {
   useEffect(() => {
@@ -34,6 +36,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/terms-of-service" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </Container>
       <Footer />

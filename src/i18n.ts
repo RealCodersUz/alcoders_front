@@ -4,7 +4,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import HttpApi from "i18next-http-backend";
 
 // LocalStorage orqali oldingi tilni olish
-const savedLanguage = localStorage.getItem("i18nextLng") || "en";
+const savedLanguage = localStorage.getItem("i18nextLng") || "uz";
 
 i18n
   .use(HttpApi)

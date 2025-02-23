@@ -5,7 +5,51 @@
     "contact": "Aloqa",
     "news": "Yangiliklar"
   },
-  "welcome": "Bizning veb-saytga xush kelibsiz!",
-  "slogan": "Shiorimiz: Innavatsion fikrlang o'zingizni qiynamang !",
-  "subtitle": "Mushkul ishlarga inovatsion yechimlar ! Aynan bizda…"
+  "welcome": "Veb-saytimizga xush kelibsiz!",
+  "slogan": "Bizning shiorimiz: Innovatsion fikrla, o'zingni qiynama!",
+  "subtitle": "Qiyin vazifalar uchun innovatsion yechimlar! Faqat biz bilan...",
+
+  "about": {
+    "title": "Sizni raqamli dunyoda muvaffaqiyatga yetaklaymiz!",
+    "description": "AlcodersUz — mijozlarning ehtiyojlariga moslashtirilgan yuqori sifatli IT xizmatlarini taqdim etishga ixtisoslashgan dinamik IT kompaniya. Biz shaxsiy maslahatlar berib, maqsad va talablaringizni chuqur tahlil qilamiz hamda eng samarali yechimlarni taklif qilamiz. Maqsadimiz biznesingizni raqamlashtirish, ish jarayonlaringizni optimallashtirish va maksimal daromad keltiradigan innovatsion loyihalar yaratishdir. **AlcodersUz bilan sizning raqamli dunyodagi muvaffaqiyatingiz — bizning ustuvor vazifamiz!** 🚀",
+
+    "WhoWeTitle": "Biz kimmiz",
+    "WhoWeDescription": "Biz biznes jarayonlarini optimallashtirish uchun yuqori sifatli veb-saytlar, API va avtomatlashtirish vositalarini ishlab chiqishga ixtisoslashganmiz. Maqsadimiz – samaradorlikni oshirish, biznes o‘sish imkoniyatlarini kengaytirish va bozordagi mavqeingizni mustahkamlash.",
+    "MissionTitleH2": "Bizning tajribamiz",
+    "MissionTextTitle1": "Veb-saytlar yaratish",
+    "MissionTextDescription1": "Zamonaviy, moslashuvchan va yuqori samarali veb-saytlarni quramiz.",
+    "MissionTextTitle2": "API & Avtomatlashtirish",
+    "MissionTextDescription2": "Biznes jarayonlarini soddalashtirish uchun samarali API-lar va avtomatlashtirish vositalarini ishlab chiqamiz.",
+    "MissionTextTitle3": "SEO & Optimizatsiya",
+    "MissionTextDescription3": "Veb-sayt tezligi, unumdorligi va qidiruv tizimlaridagi reytingini oshiramiz.",
+    "MissionTextTitle4": "Eski veb-saytlarni modernizatsiya qilish",
+    "MissionTextDescription4": "Eskirgan veb-saytlarni zamonaviy dizayn va ilg‘or funksiyalar bilan yangilaymiz.",
+    "MissionTextTitle5": "Telegram botlari & Veb-ilovalar",
+    "MissionTextDescription5": "Interaktiv Telegram botlari va veb-ilovalarni ishlab chiqamiz hamda integratsiya qilamiz.",
+    "MissionTextTitle6": "Elektron tijorat yechimlari",
+    "MissionTextDescription6": "To‘lov tizimlari integratsiyasi bilan mukammal onlayn do‘konlar yaratamiz."
+  },
+  "services": {
+    "title": "Xizmatlarimiz",
+    "makeOrder": "Buyurtma berish"
+  },
+  "footer": {
+    "rights": "Barcha huquqlar himoyalangan.",
+    "privacy": "Maxfiylik siyosati",
+    "terms": "Xizmat ko'rsatish shartlari",
+    "contact": "Bog'lanish"
+  },
+  "contact": {
+    "title": "Biz bilan bog‘laning",
+    "description": "Savollaringiz yoki hamkorlik uchun biz bilan bog‘laning.",
+    "name": "Ismingiz",
+    "phone": "Telefon raqamingiz",
+    "message": "Xabaringizni kiriting",
+    "submit": "Yuborish",
+    "imageAlt": "Bog‘lanish"
+  },
+  "news": {
+    "title": "So‘nggi Yangiliklar",
+    "close": "Yopish"
+  }
 }

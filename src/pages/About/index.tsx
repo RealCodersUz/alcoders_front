@@ -2,28 +2,27 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./index.css"; // Optional for extra styling
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const About: React.FC = () => {
-  // eslint-disable-next-line prefer-const
+  const { t } = useTranslation();
   let navigate = useNavigate();
+
   return (
     <div className="about-page">
       {/* Hero Section with Video Background */}
       <div className="hero-section">
         <video autoPlay loop muted playsInline className="bg-video">
           <source src="/aboutbg.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
+          {t("videoNotSupported")}
         </video>
         <div className="overlay"></div>
         <Container className="text-center text-white hero-content">
           <h3 className="fw-5" data-aos="fade-down">
-            We Empower You to Succeed in the Digital World
+            {t("about.title")}
           </h3>
           <p className="p-5" data-aos="fade-up">
-            "Alcoders" is an IT company that provides its clients with a variety
-            of IT services. We talk to each client individually, explaining what
-            they want and need to do, and what we can offer. And we create
-            projects based on the needs and wishes of our clients.
+            {t("about.description")}
           </p>
         </Container>
       </div>
@@ -32,13 +31,8 @@ const About: React.FC = () => {
       <Container className="mt-5 p-5">
         <Row className="align-items-center g-5">
           <Col md={6} data-aos="fade-right">
-            <h2>Who We Are</h2>
-            <p>
-              We specialize in developing high-quality websites, APIs, and
-              automation tools to optimize businesses. Our mission is to
-              digitize businesses efficiently while ensuring maximum growth and
-              impact.
-            </p>
+            <h2>{t("about.WhoWeTitle")}</h2>
+            <p>{t("about.WhoWeDescription")}</p>
           </Col>
           <Col md={6} className="text-center" data-aos="fade-left">
             <img src="/about.svg" alt="About Us" className="img-fluid " />
@@ -46,46 +40,24 @@ const About: React.FC = () => {
         </Row>
       </Container>
 
-      {/* Services or Team Section */}
+      {/* Services Section */}
       <Container className="mt-5">
-        <h2 className="text-center mb-4">Our Expertise</h2>
+        <h2 className="text-center mb-4">{t("about.MissionTitleH2")}</h2>
         <Row>
-          {[
-            {
-              id: "1",
-              title: "Web Development",
-              desc: "We create modern, responsive, and high-performance websites.",
-            },
-            {
-              id: "2",
-              title: "API & Automation",
-              desc: "Building efficient APIs and automating workflows for businesses.",
-            },
-            {
-              id: "3",
-              title: "SEO & Optimization",
-              desc: "Optimizing websites for better performance and search rankings.",
-            },
-            {
-              id: "4",
-              title: "Upgrading Old Websites",
-              desc: "Revamping outdated websites with modern designs and improved functionality.",
-            },
-            {
-              id: "5",
-              title: "Telegram bots & Web Apps",
-              desc: "Modern telegr bots creation and adding web app functionalities",
-            },
-          ].map((service, index) => (
+          {[...Array(6).keys()].map((index) => (
             <Col md={4} key={index} className="g-5" data-aos="flip-down">
               <Card
                 className="text-center p-3 shadow"
                 style={{ maxWidth: "400px" }}
-                onClick={() => navigate(`/contact/${service.id}`)}
+                onClick={() => navigate(`/contact/${index + 1}`)}
               >
                 <Card.Body>
-                  <Card.Title>{service.title}</Card.Title>
-                  <Card.Text>{service.desc}</Card.Text>
+                  <Card.Title>
+                    {t(`about.MissionTextTitle${index + 1}`)}
+                  </Card.Title>
+                  <Card.Text>
+                    {t(`about.MissionTextDescription${index + 1}`)}
+                  </Card.Text>
                 </Card.Body>
               </Card>
             </Col>

@@ -26,7 +26,7 @@ const Home = () => {
           </h3>
 
           <p className="text-center text-secondary fs-5 p-5">
-            Alcoders is an IT company that provides its clients with a variety
+            AlcodersUz is an IT company that provides its clients with a variety
             of IT services. We talk to each client individually, explaining what
             they want and need to do, and what we can offer. And we create
             projects based on the needs and wishes of our clients. The main
@@ -83,7 +83,7 @@ const Home = () => {
               style={{ fontSize: "3rem", fontWeight: "bold", margin: "0" }}
               data-aos="zoom-in-up"
             >
-              We empower you to succeed in the digital world
+              <h3>{t("about.title")}</h3>
             </h1>
             <p
               style={{
@@ -93,12 +93,7 @@ const Home = () => {
               }}
               data-aos="zoom-out"
             >
-              Alcoders is an IT company that provides its clients with a variety
-              of IT services. We talk to each client individually, explaining
-              what they want and need to do, and what we can offer. And we
-              create projects based on the needs and wishes of our clients. The
-              main thing for us is to digitize your business or work and provide
-              you with the most profitable projects you want.
+              <h3>{t("about.description")}</h3>
             </p>
 
             {/* <div style={{ marginTop: "20px" }}>
@@ -117,14 +112,14 @@ const Home = () => {
       </section>
       <section>
         <div className="container pt-5 w-100 ">
-          {/* <h3 className="text-center">{t("services")}</h3> */}
-          <h3 className="text-center pb-5">Bizning Xizmatlar</h3>
+          <h3 className="text-center">{t("services.title")}</h3>
+          {/* <h3 className="text-center pb-5">{t("services")}</h3> */}
           <div className="d-flex flex flex-row flex-wrap gap-5">
             <Card
               id="1"
               url="/pexels-fotios-photos-2363482.jpg"
               title="Web Sites (Korporative)"
-              subtitle="Alcoders is an IT company that provides its clients with a variety
+              subtitle="AlcodersUz is an IT company that provides its clients with a variety
             of IT services. We talk to each client individually, explaining what
             they want and need to do, and what we can offer."
             />
@@ -132,7 +127,7 @@ const Home = () => {
               id={`${1}`}
               url="/public/pexels-fotios-photos-2363482.jpg"
               title="Building CRM systems"
-              subtitle="Alcoders is an IT company that provides its clients with a variety
+              subtitle="AlcodersUz is an IT company that provides its clients with a variety
             of IT services. We talk to each client individually, explaining what
             they want and need to do, and what we can offer."
             />

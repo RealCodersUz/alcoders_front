@@ -1,22 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import Flag from "react-world-flags";
 
 const Appbar = () => {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng).then(() => {
-      localStorage.setItem("i18nextLng", lng); // LocalStorage orqali tilni saqlash
-      window.location.reload(); // Sahifani qayta yuklash
+      localStorage.setItem("i18nextLng", lng);
+      window.location.reload();
     });
+  };
+
+  // Til kodi => Bayroq + Til nomi
+  const languageOptions: { [key: string]: { flag: string; label: string } } = {
+    en: { flag: "GB", label: "English" },
+    uz: { flag: "UZ", label: "O‘zbek" },
+    ru: { flag: "RU", label: "Русский" },
+    uz_cyrl: { flag: "UZ", label: "Ўзбек (Кирил)" },
   };
 
   return (
     <Navbar
       expand="lg"
-      className="bg-white shadow-md py-3 opacity-1"
+      className="bg-white shadow-md py-3"
       style={{
         position: "fixed",
         top: "0",
@@ -28,7 +36,7 @@ const Appbar = () => {
     >
       <Container>
         <Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
-          Alcoders
+          AlcodersUz
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" />
@@ -49,23 +57,24 @@ const Appbar = () => {
           </Nav>
         </Navbar.Collapse>
 
-        <Dropdown style={{ borderColor: "#4d4d57" }}>
+        <Dropdown>
           <Dropdown.Toggle variant="outline-dark">
-            🌐 {i18n.language.toUpperCase()}
+            <Flag
+              code={languageOptions[i18n.language]?.flag}
+              style={{ width: 20, height: 15, marginRight: 5 }}
+            />
+            {languageOptions[i18n.language]?.label}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => changeLanguage("en")}>
-              🇬🇧 English
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("uz")}>
-              🇺🇿 O‘zbek
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("ru")}>
-              🇷🇺 Русский
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("uz_cyrl")}>
-              🇺🇿 Ўзбек (Кирил)
-            </Dropdown.Item>
+            {Object.entries(languageOptions).map(([lng, { flag, label }]) => (
+              <Dropdown.Item key={lng} onClick={() => changeLanguage(lng)}>
+                <Flag
+                  code={flag}
+                  style={{ width: 20, height: 15, marginRight: 5 }}
+                />
+                {label}
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown>
       </Container>
