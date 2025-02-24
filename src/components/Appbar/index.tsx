@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -8,66 +7,76 @@ const Appbar = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng).then(() => {
-      localStorage.setItem("i18nextLng", lng); // LocalStorage orqali tilni saqlash
-      window.location.reload(); // Sahifani qayta yuklash
+      localStorage.setItem("i18nextLng", lng);
+      // window.location.reload();
     });
   };
 
+  // Til kodi => Bayroq + Til nomi
+  const languageOptions: { [key: string]: { flag: string; label: string } } = {
+    en: { flag: "gb", label: "English" },
+    uz: { flag: "uz", label: "O‘zbek" },
+    ru: { flag: "ru", label: "Русский" },
+    uz_cyrl: { flag: "uz", label: "Ўзбек (Кирил)" },
+  };
+
   return (
-    <Navbar
-      expand="lg"
-      className="bg-white shadow-md py-3 opacity-1"
-      style={{
-        position: "fixed",
-        top: "0",
-        left: "0",
-        width: "100%",
-        background: "white",
-        zIndex: "1050",
-      }}
-    >
+    <Navbar expand="lg" className="bg-white shadow-md py-3 fixed-top">
       <Container>
         <Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
-          Alcoders
+          AlcodersUz
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav" className="justify-content-center">
-          <Nav className="gap-4">
-            <Nav.Link as={Link} to="/">
-              {t("navbar.home")}
-            </Nav.Link>
-            <Nav.Link as={Link} to="/about">
-              {t("navbar.about")}
-            </Nav.Link>
-            <Nav.Link as={Link} to="/contact">
-              {t("navbar.contact")}
-            </Nav.Link>
-            <Nav.Link as={Link} to="/news">
-              {t("navbar.news")}
-            </Nav.Link>
+        <Navbar.Collapse id="navbar-nav">
+          <Nav className="ms-auto gap-4 d-flex align-items-center justify-content-between">
+            <Nav.Item className="ms-auto gap-4 d-flex align-items-center">
+              <Nav.Link as={Link} to="/">
+                {t("navbar.home")}
+              </Nav.Link>
+              <Nav.Link as={Link} to="/about">
+                {t("navbar.about")}
+              </Nav.Link>
+              <Nav.Link as={Link} to="/contact">
+                {t("navbar.contact")}
+              </Nav.Link>
+              <Nav.Link as={Link} to="/news">
+                {t("navbar.news")}
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-dark">
+                  <img
+                    src={`https://flagcdn.com/w40/${
+                      languageOptions[i18n.language]?.flag
+                    }.png`}
+                    alt={i18n.language}
+                    style={{ width: 20, height: 15 }}
+                  />
+                  {languageOptions[i18n.language]?.label}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {Object.entries(languageOptions).map(
+                    ([lng, { flag, label }]) => (
+                      <Dropdown.Item
+                        key={lng}
+                        onClick={() => changeLanguage(lng)}
+                      >
+                        <img
+                          src={`https://flagcdn.com/w40/${flag}.png`}
+                          alt={lng}
+                          style={{ width: 20, height: 15, marginRight: 5 }}
+                        />
+                        {label}
+                      </Dropdown.Item>
+                    )
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
-
-        <Dropdown style={{ borderColor: "#4d4d57" }}>
-          <Dropdown.Toggle variant="outline-dark">
-            🌐 {i18n.language.toUpperCase()}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item onClick={() => changeLanguage("en")}>
-              🇬🇧 English
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("uz")}>
-              🇺🇿 O‘zbek
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("ru")}>
-              🇷🇺 Русский
-            </Dropdown.Item>
-            <Dropdown.Item onClick={() => changeLanguage("uz_cyrl")}>
-              🇺🇿 Ўзбек (Кирил)
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
       </Container>
     </Navbar>
   );

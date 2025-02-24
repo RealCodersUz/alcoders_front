@@ -1,9 +1,16 @@
 {
-    "navbar": {
-      "home": "Bosh sahifa",
-      "about": "Biz haqimizda",
-      "contact": "Aloqa"
-    },
-    "welcome": "Bizning veb-saytga xush kelibsiz!"
+  "navbar": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "contact": "Aloqa"
+  },
+  "welcome": "Veb-saytimizga xush kelibsiz!",
+  "about": {
+    "title": "Biz sizni raqamli dunyoda muvaffaqiyatga yetaklaymiz!",
+    "description": "AlcodersUz — mijozlariga sifatli IT xizmatlarini taqdim etuvchi innovatsion IT kompaniya. Biz har bir mijoz bilan individual yondashuvda ishlaymiz, ularning ehtiyoj va maqsadlarini batafsil o‘rganamiz hamda eng samarali yechimlarni taklif qilamiz. Bizning asosiy maqsadimiz — biznesingizni raqamlashtirish, ish jarayonlaringizni optimallashtirish va sizga eng foydali loyihalarni yaratib berishdir. AlcodersUz bilan siz raqamli dunyoda muvaffaqiyat sari qadam tashlaysiz!"
+  },
+  "services": {
+    "title": "Bizning xizmatlarimiz",
+    "makeOrder": "Buyurtma berish"
   }
-  
+}

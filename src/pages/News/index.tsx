@@ -1,66 +1,55 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button, Card, Container, Row, Col } from "react-bootstrap";
+import {
+  Modal,
+  Button,
+  Card,
+  Container,
+  Row,
+  Col,
+  Pagination,
+} from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import AOS from "aos";
 import axios from "axios";
 import "aos/dist/aos.css";
 
 interface NewsItem {
-  id: number;
-  title: string;
-  description: string;
+  _id: string;
+  name_uz: string;
+  name_ru: string;
+  name_en: string;
+  name_kr: string;
+  description_uz: string;
+  description_ru: string;
+  description_en: string;
+  description_kr: string;
   image: string;
 }
 
 const NewsPage: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const [news, setNews] = useState<NewsItem[]>([]);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     AOS.init({ duration: 1000, offset: 0 });
-    const config = {
-      method: "get",
-      maxBodyLength: Infinity,
-      url: "http://api.alcoders.uz/news",
-      headers: {
-        "Content-Type": "application/json",
-        "Acces-control-origin": "*",
-      },
-    };
 
     axios
-      .request(config)
-      .then((response) => {
-        console.log(JSON.stringify(response.data));
-        console.log(JSON.parse(response.data));
-
-        setNews(JSON.parse(response.data));
+      .get("https://api.alcoders.uz/news", {
+        headers: { "Content-Type": "application/json" },
       })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log(news);
-
-    // setNews([
-    //   {
-    //     id: 1,
-    //     title: "News 1",
-    //     description: "This is news 1",
-    //     image: "/pexels-fotios-photos-2363482.jpg",
-    //   },
-    //   {
-    //     id: 2,
-    //     title: "News 1",
-    //     description: "This is news 1",
-    //     image: "/pexels-fotios-photos-2363482.jpg",
-    //   },
-    //   {
-    //     id: 3,
-    //     title: "News 1",
-    //     description: "This is news 1",
-    //     image: "/pexels-fotios-photos-2363482.jpg",
-    //   },
-    // ]);
+      .then((response) => {
+        if (Array.isArray(response.data.data)) {
+          setNews(response.data.data);
+          console.log(response.data.data);
+        } else {
+          console.error("Invalid response format:", response.data);
+        }
+      })
+      .catch((error) => console.log("API Error:", error));
   }, []);
 
   const handleShowModal = (newsItem: NewsItem) => {
@@ -70,12 +59,22 @@ const NewsPage: React.FC = () => {
 
   const handleCloseModal = () => setShowModal(false);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentNews = news.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(news.length / itemsPerPage);
+
+  const getLocalizedText = (item: NewsItem, key: "name" | "description") => {
+    const langKey = `${key}_${i18n.language}` as keyof NewsItem;
+    return item[langKey] ?? item[`name_uz`];
+  };
+
   return (
     <Container className="py-5">
-      <h2 className="text-center mb-4">Latest News</h2>
-      <Row className="g-4">
-        {news.map((item) => (
-          <Col md={4} lg={6} key={item.id} data-aos="fade-up">
+      <h2 className="text-center mb-4">{t("news.title")}</h2>
+      <Row className="g-4 d-flex flex-row align-items-center justify-content-space-between">
+        {currentNews.map((item) => (
+          <Col md={4} lg={6} key={item._id} data-aos="fade-up">
             <Card
               className="shadow-lg border-0"
               onClick={() => handleShowModal(item)}
@@ -83,34 +82,46 @@ const NewsPage: React.FC = () => {
               <Card.Img
                 variant="top"
                 src={item.image}
-                alt={item.title}
+                alt={getLocalizedText(item, "name")}
                 style={{ height: "200px", objectFit: "cover" }}
               />
               <Card.Body>
-                <Card.Title>{item.title}</Card.Title>
+                <Card.Title>{getLocalizedText(item, "name")}</Card.Title>
               </Card.Body>
             </Card>
           </Col>
         ))}
       </Row>
 
+      <Pagination className="justify-content-center mt-4">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Pagination.Item
+            key={i + 1}
+            active={i + 1 === currentPage}
+            onClick={() => setCurrentPage(i + 1)}
+          >
+            {i + 1}
+          </Pagination.Item>
+        ))}
+      </Pagination>
+
       {selectedNews && (
         <Modal show={showModal} onHide={handleCloseModal} centered>
           <Modal.Header closeButton>
-            <Modal.Title>{selectedNews.title}</Modal.Title>
+            <Modal.Title>{getLocalizedText(selectedNews, "name")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <img
               src={selectedNews.image}
-              alt={selectedNews.title}
+              alt={getLocalizedText(selectedNews, "name")}
               className="w-100 mb-3"
               style={{ borderRadius: "10px" }}
             />
-            <p>{selectedNews.description}</p>
+            <p>{getLocalizedText(selectedNews, "description")}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="outline-secondary" onClick={handleCloseModal}>
-              Close
+              {t("news.close")}
             </Button>
           </Modal.Footer>
         </Modal>

@@ -1,9 +1,97 @@
-import Card from "../../components/Card";
+import { useEffect, useState } from "react";
+import Cards from "../../components/Card";
 import "./index.css";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
+import AOS from "aos";
+import "aos/dist/aos.css";
+// import i18n from "../../i18n";
+import { Button, Card, Col, Modal, Row } from "react-bootstrap";
+interface ServiceItem {
+  _id: string;
+  name_uz: string;
+  name_ru: string;
+  name_en: string;
+  name_kr: string;
+  description_uz: string;
+  description_ru: string;
+  description_en: string;
+  description_kr: string;
+  included_uz: string;
+  included_ru: string;
+  included_en: string;
+  included_kr: string;
+  price: number;
+  type: string;
+  discount: number;
+  image: string;
+}
 
+const getLocalizedText = (
+  item: ServiceItem,
+  key: "name" | "description" | "included",
+  lang: string
+): string => {
+  const langKey = `${key}_${lang}` as keyof ServiceItem;
+  return String(item[langKey] ?? item["name_uz"]); // Majburan stringga o‘girish
+};
+interface NewsItem {
+  _id: string;
+  name_uz: string;
+  name_ru: string;
+  name_en: string;
+  name_kr: string;
+  description_uz: string;
+  description_ru: string;
+  description_en: string;
+  description_kr: string;
+  image: string;
+}
 const Home = () => {
-  const { t } = useTranslation();
+  const [service, setService] = useState<ServiceItem[]>([]);
+  const [news, setNews] = useState<NewsItem[]>([]);
+  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const { i18n, t } = useTranslation();
+  useEffect(() => {
+    AOS.init({ duration: 100, offset: 0, delay: 0 });
+
+    axios
+      .get("https://api.alcoders.uz/products")
+      .then((response) => setService(response.data.data))
+      .catch((error) => console.log(error));
+    console.log(service, "service");
+
+    axios
+      .get("https://api.alcoders.uz/news", {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        if (Array.isArray(response.data.data)) {
+          setNews(response.data.data);
+          console.log(response.data.data);
+        } else {
+          console.error("Invalid response format:", response.data);
+        }
+      })
+      .catch((error) => console.log("API Error:", error));
+  }, []);
+
+  const getLocalizedTextForNews = (
+    item: NewsItem,
+    key: "name" | "description"
+  ) => {
+    const langKey = `${key}_${i18n.language}` as keyof NewsItem;
+    return item[langKey] ?? item[`name_uz`];
+  };
+
+  const handleShowModal = (newsItem: NewsItem) => {
+    setSelectedNews(newsItem);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <>
@@ -26,7 +114,7 @@ const Home = () => {
           </h3>
 
           <p className="text-center text-secondary fs-5 p-5">
-            Alcoders is an IT company that provides its clients with a variety
+            AlcodersUz is an IT company that provides its clients with a variety
             of IT services. We talk to each client individually, explaining what
             they want and need to do, and what we can offer. And we create
             projects based on the needs and wishes of our clients. The main
@@ -83,7 +171,7 @@ const Home = () => {
               style={{ fontSize: "3rem", fontWeight: "bold", margin: "0" }}
               data-aos="zoom-in-up"
             >
-              We empower you to succeed in the digital world
+              <h3>{t("about.title")}</h3>
             </h1>
             <p
               style={{
@@ -93,15 +181,11 @@ const Home = () => {
               }}
               data-aos="zoom-out"
             >
-              Alcoders is an IT company that provides its clients with a variety
-              of IT services. We talk to each client individually, explaining
-              what they want and need to do, and what we can offer. And we
-              create projects based on the needs and wishes of our clients. The
-              main thing for us is to digitize your business or work and provide
-              you with the most profitable projects you want.
+              <h3>{t("about.description")}</h3>
             </p>
 
             {/* <div style={{ marginTop: "20px" }}>
+            
               <img
                 src="/service.jpg"
                 alt="About Us"
@@ -117,27 +201,76 @@ const Home = () => {
       </section>
       <section>
         <div className="container pt-5 w-100 ">
-          {/* <h3 className="text-center">{t("services")}</h3> */}
-          <h3 className="text-center pb-5">Bizning Xizmatlar</h3>
-          <div className="d-flex flex flex-row flex-wrap gap-5">
-            <Card
-              id="1"
-              url="/pexels-fotios-photos-2363482.jpg"
-              title="Web Sites (Korporative)"
-              subtitle="Alcoders is an IT company that provides its clients with a variety
-            of IT services. We talk to each client individually, explaining what
-            they want and need to do, and what we can offer."
-            />
-            <Card
-              id={`${1}`}
-              url="/public/pexels-fotios-photos-2363482.jpg"
-              title="Building CRM systems"
-              subtitle="Alcoders is an IT company that provides its clients with a variety
-            of IT services. We talk to each client individually, explaining what
-            they want and need to do, and what we can offer."
-            />
+          <h3 className="text-center">{t("services.title")}</h3>
+          {/* <h3 className="text-center pb-5">{t("services")}</h3> */}
+          <div className="coni gap-5 py-5 ">
+            {Array.isArray(service) &&
+              service.map((item) => (
+                <Cards
+                  key={item._id}
+                  id={item._id}
+                  url={item.image}
+                  title={getLocalizedText(item, "name", i18n.language)}
+                  subtitle={getLocalizedText(
+                    item,
+                    "description",
+                    i18n.language
+                  )}
+                  included={getLocalizedText(item, "included", i18n.language)}
+                  price={item.price}
+                  discount={item.discount}
+                />
+              ))}
           </div>
         </div>
+      </section>
+      <section>
+        <h2 className="text-center mb-4 py-5">{t("news.title")}</h2>
+        <Row className="g-4 d-flex flex-row align-items-center justify-content-space-between">
+          {news.map((item) => (
+            <Col md={4} lg={6} key={item._id} data-aos="fade-up">
+              <Card
+                className="shadow-lg border-0"
+                onClick={() => handleShowModal(item)}
+              >
+                <Card.Img
+                  variant="top"
+                  src={item.image}
+                  alt={getLocalizedTextForNews(item, "name")}
+                  style={{ height: "200px", objectFit: "cover" }}
+                />
+                <Card.Body>
+                  <Card.Title>
+                    {getLocalizedTextForNews(item, "name")}
+                  </Card.Title>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+        {selectedNews && (
+          <Modal show={showModal} onHide={handleCloseModal} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                {getLocalizedTextForNews(selectedNews, "name")}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <img
+                src={selectedNews.image}
+                alt={getLocalizedTextForNews(selectedNews, "name")}
+                className="w-100 mb-3"
+                style={{ borderRadius: "10px" }}
+              />
+              <p>{getLocalizedTextForNews(selectedNews, "description")}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="outline-secondary" onClick={handleCloseModal}>
+                {t("news.close")}
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
       </section>
     </>
   );

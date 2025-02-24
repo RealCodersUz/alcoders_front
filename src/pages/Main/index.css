@@ -16,6 +16,16 @@
 .heroimg {
   border-radius: 5%;
 }
+.appb {
+  width: 100%;
+}
+.coni {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
 /* Responsive Design */
 @media (max-width: 992px) {
   .hero-section {
@@ -72,5 +82,9 @@
 
   .video-section p {
     font-size: 0.9rem;
+  }
+  .coni {
+    width: 90%;
+    display: block;
   }
 }

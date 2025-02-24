@@ -5,7 +5,7 @@ const path = require("path"); // Modulni import qilishni unutmang
 const app = express();
 
 const distPath = path.join(__dirname, "dist");
-const images = path.join(__dirname, "../../Kalde-BackEnd/public");
+const images = path.join(__dirname, "../../alcoders_back/public");
 
 app.use(express.static(distPath));
 app.use(express.static(images));
@@ -20,6 +20,6 @@ app.get("/*", (req, res) => {
   res.sendFile(distHtmlPath);
 });
 
-app.listen(7001, () => {
-  console.log("Frontend ishlayapti, 7001-portni eshitishni kutamiz...");
+app.listen(5001, () => {
+  console.log("Frontend ishlayapti, 5001-portni eshitishni kutamiz...");
 });

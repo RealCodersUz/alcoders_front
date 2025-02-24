@@ -7,5 +7,50 @@
   },
   "welcome": "Welcome to our website!",
   "slogan": "Our motto: Think innovatively, don't torture yourself!",
-  "subtitle": "Innovative solutions for difficult tasks! Only with us..."
+  "subtitle": "Innovative solutions for difficult tasks! Only with us...",
+
+  "about": {
+    "title": "We empower you to succeed in the digital world!",
+    "description": "AlcodersUz is a dynamic IT company dedicated to providing high-quality IT services tailored to the unique needs of each client. We offer personalized consultations, thoroughly analyzing your goals and requirements to deliver the most effective solutions. Our mission is to digitize your business, optimize your workflow, and create innovative projects that generate maximum profit. **With AlcodersUz, your success in the digital world is our priority!** 🚀",
+
+    "WhoWeTitle": "Who We Are",
+    "WhoWeDescription": "We specialize in developing high-quality websites, APIs, and automation tools to optimize business processes. Our goal is to enhance efficiency, expand growth opportunities, and strengthen your market presence.",
+    "MissionTitleH2": "Our Expertise",
+    "MissionTextTitle1": "Web Development",
+    "MissionTextDescription1": "We build modern, responsive, and high-performance websites.",
+    "MissionTextTitle2": "API & Automation",
+    "MissionTextDescription2": "Creating efficient APIs and automating workflows to streamline business operations.",
+    "MissionTextTitle3": "SEO & Optimization",
+    "MissionTextDescription3": "Enhancing website speed, performance, and search engine rankings.",
+    "MissionTextTitle4": "Upgrading Old Websites",
+    "MissionTextDescription4": "Modernizing outdated websites with improved design and advanced functionality.",
+    "MissionTextTitle5": "Telegram Bots & Web Apps",
+    "MissionTextDescription5": "Developing interactive Telegram bots and integrating web applications.",
+    "MissionTextTitle6": "E-commerce Solutions",
+    "MissionTextDescription6": "Building and optimizing online stores with seamless payment integration."
+  },
+  "services": {
+    "title": "Our Services",
+    "makeOrder": "Place an Order",
+    "includes": "Includes"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "Feel free to contact us for any inquiries or collaborations.",
+    "name": "Your Name",
+    "phone": "Your Phone Number",
+    "message": "Enter Your Message",
+    "submit": "Submit",
+    "imageAlt": "Contact Us"
+  },
+  "news": {
+    "title": "Latest News",
+    "close": "Close"
+  }
 }
