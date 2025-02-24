@@ -47,10 +47,10 @@ const Footer = () => {
               Terms of Service
             </Link>
             <a
-              href="tel:+998916223406"
+              href="tel:+998200116877"
               className="text-light text-decoration-none mx-2"
             >
-              Contact:+998916223406
+              Contact:+998200116877
             </a>
           </Col>
         </Row>

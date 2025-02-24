@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button, Card, Container, Row, Col } from "react-bootstrap";
 import AOS from "aos";
+import axios from "axios";
 import "aos/dist/aos.css";
 
 interface NewsItem {
@@ -17,30 +18,49 @@ const NewsPage: React.FC = () => {
 
   useEffect(() => {
     AOS.init({ duration: 1000, offset: 0 });
-    // fetch("https://api.example.com/news") // API manzilini o'zgartiring
-    //   .then((response) => response.json())
-    //   .then((data: NewsItem[]) => setNews(data))
-    //   .catch((error) => console.error("Error fetching news:", error));
-    setNews([
-      {
-        id: 1,
-        title: "News 1",
-        description: "This is news 1",
-        image: "/pexels-fotios-photos-2363482.jpg",
+    const config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "http://api.alcoders.uz/news",
+      headers: {
+        "Content-Type": "application/json",
+        "Acces-control-origin": "*",
       },
-      {
-        id: 2,
-        title: "News 1",
-        description: "This is news 1",
-        image: "/pexels-fotios-photos-2363482.jpg",
-      },
-      {
-        id: 3,
-        title: "News 1",
-        description: "This is news 1",
-        image: "/pexels-fotios-photos-2363482.jpg",
-      },
-    ]);
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        console.log(JSON.parse(response.data));
+
+        setNews(JSON.parse(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log(news);
+
+    // setNews([
+    //   {
+    //     id: 1,
+    //     title: "News 1",
+    //     description: "This is news 1",
+    //     image: "/pexels-fotios-photos-2363482.jpg",
+    //   },
+    //   {
+    //     id: 2,
+    //     title: "News 1",
+    //     description: "This is news 1",
+    //     image: "/pexels-fotios-photos-2363482.jpg",
+    //   },
+    //   {
+    //     id: 3,
+    //     title: "News 1",
+    //     description: "This is news 1",
+    //     image: "/pexels-fotios-photos-2363482.jpg",
+    //   },
+    // ]);
   }, []);
 
   const handleShowModal = (newsItem: NewsItem) => {
