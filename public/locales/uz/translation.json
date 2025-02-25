@@ -47,7 +47,8 @@
     "phone": "Telefon raqamingiz",
     "message": "Xabaringizni kiriting",
     "submit": "Yuborish",
-    "imageAlt": "Bog‘lanish"
+    "imageAlt": "Bog‘lanish",
+    "success": "Xabar muvaffaqiyatli yuborildi"
   },
   "news": {
     "title": "So‘nggi Yangiliklar",

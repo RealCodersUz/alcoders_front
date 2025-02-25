@@ -47,7 +47,8 @@
     "phone": "Your Phone Number",
     "message": "Enter Your Message",
     "submit": "Submit",
-    "imageAlt": "Contact Us"
+    "imageAlt": "Contact Us",
+    "success": "Message sent successfully"
   },
   "news": {
     "title": "Latest News",

@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import "./index.css"; // Optional for extra styling
@@ -49,7 +50,7 @@ const About: React.FC = () => {
               <Card
                 className="text-center p-3 shadow"
                 style={{ maxWidth: "400px" }}
-                onClick={() => navigate(`/contact/${index + 1}`)}
+                onClick={() => navigate(`/contact?id=${index + 1}`)}
               >
                 <Card.Body>
                   <Card.Title>

@@ -48,7 +48,7 @@ const Cards: React.FC<CardProps> = ({
       </div>
       <Button variant="outline-secondary">
         <Link
-          to={`/contact/${id}`}
+          to={`/contact?id=${id}`}
           className="text-black fw-bold fs-4 text-decoration-none d-flex justify-content-center flex-row w-100"
         >
           {t("services.makeOrder")}
