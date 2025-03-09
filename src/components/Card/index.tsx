@@ -27,7 +27,7 @@ const Cards: React.FC<CardProps> = ({
 
   return (
     <div>
-      <div className="bg-secondary card shadow-lg rounded-lg transition-all duration-500 hover:shadow-2xl bordered mb-4">
+      <div className="bg-secondary card shadow-lg rounded-lg transition-all duration-500 hover:shadow-2xl bordered mb-4 w-100">
         <img src={url} alt="cd_img" style={{ objectFit: "cover" }} />
         <div className="p-4 text-white text-center">
           <h4>{title}</h4>
@@ -46,7 +46,7 @@ const Cards: React.FC<CardProps> = ({
           )}
         </div>
       </div>
-      <Button variant="outline-secondary">
+      <Button variant="outline-secondary mb-5 w-100">
         <Link
           to={`/contact?id=${id}`}
           className="text-black fw-bold fs-4 text-decoration-none d-flex justify-content-center flex-row w-100"

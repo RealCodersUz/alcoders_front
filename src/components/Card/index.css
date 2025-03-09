@@ -17,7 +17,8 @@
   flex-direction: row !important;
   align-items: center;
   text-align: center;
-  width: 600px;
+  /* width: 600px; */
+  width: 100%;
 }
 
 .card img {

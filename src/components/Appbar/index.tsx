@@ -1,6 +1,7 @@
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import "./index.css";
 
 const Appbar = () => {
   const { t, i18n } = useTranslation();
@@ -12,7 +13,6 @@ const Appbar = () => {
     });
   };
 
-  // Til kodi => Bayroq + Til nomi
   const languageOptions: { [key: string]: { flag: string; label: string } } = {
     en: { flag: "gb", label: "English" },
     uz: { flag: "uz", label: "O‘zbek" },
@@ -30,7 +30,7 @@ const Appbar = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto gap-4 d-flex align-items-center justify-content-between">
-            <Nav.Item className="ms-auto gap-4 d-flex align-items-center">
+            <Nav.Item className="d-lg-flex align-items-lg-center gap-lg-4 d-md-flex d-inline-block">
               <Nav.Link as={Link} to="/">
                 {t("navbar.home")}
               </Nav.Link>
@@ -46,11 +46,12 @@ const Appbar = () => {
             </Nav.Item>
             <Nav.Item>
               <Dropdown>
-                <Dropdown.Toggle variant="outline-dark">
+                <Dropdown.Toggle
+                  variant="outline-dark"
+                  className="d-flex align-items-center gap-1"
+                >
                   <img
-                    src={`https://flagcdn.com/w40/${
-                      languageOptions[i18n.language]?.flag
-                    }.png`}
+                    src={`/${languageOptions[i18n.language]?.flag}.png`}
                     alt={i18n.language}
                     style={{ width: 20, height: 15 }}
                   />
@@ -64,7 +65,7 @@ const Appbar = () => {
                         onClick={() => changeLanguage(lng)}
                       >
                         <img
-                          src={`https://flagcdn.com/w40/${flag}.png`}
+                          src={`/${flag}.png`}
                           alt={lng}
                           style={{ width: 20, height: 15, marginRight: 5 }}
                         />
