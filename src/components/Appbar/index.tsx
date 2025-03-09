@@ -21,7 +21,7 @@ const Appbar = () => {
   };
 
   return (
-    <Navbar expand="lg" className="bg-white shadow-md py-3 fixed-top">
+    <Navbar expand="lg" className="bg-white shadow-md py-3 fixed-top sm-p-0">
       <Container>
         <Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
           AlcodersUz

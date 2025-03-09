@@ -95,7 +95,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="d-flex flex-row justify-content-center g-4 align-item-center py-5">
+      <section className="d-flex flex-row justify-content-center g-4 align-item-center mt-5">
         <div data-aos="fade-right" className="container mt-5 w-75 my-5">
           <h3>{t("welcome")}</h3>
           <h2 className="my-5 fs-1">{t("slogan")}</h2>
