@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { FiMenu, FiX } from "react-icons/fi"; // Hamburger va X iconlar
 import "./index.css";
 
 const Appbar = () => {
   const { t, i18n } = useTranslation();
-  const location = useLocation();
+
   const [expanded, setExpanded] = useState(false); // Navbar holatini boshqarish
 
   const changeLanguage = (lng: string) => {

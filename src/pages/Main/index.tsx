@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Cards from "../../components/Card";
+
 import "./index.css";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
