@@ -30,9 +30,17 @@
     "MissionTextDescription6": "To‘lov tizimlari integratsiyasi bilan mukammal onlayn do‘konlar yaratamiz."
   },
   "services": {
-    "title": "Xizmatlarimiz",
+    "title": "Bizning Xizmatlar",
+    "advantages": [
+      "Biz bepul maslahatlar beramiz!",
+      "Siz xohlagan platformaga so‘rov yuborish mumkin.",
+      "24/7 mijozlarga xizmat ko‘rsatish mavjud.",
+      "Sifatli xizmat arzon narxlarda."
+    ],
+    "price": "Narxi",
+    "discount": "Chegirma",
     "makeOrder": "Buyurtma berish",
-    "includes": "O'z ichiga oladi"
+    "includes": "Ichiga oladi"
   },
   "footer": {
     "rights": "Barcha huquqlar himoyalangan.",

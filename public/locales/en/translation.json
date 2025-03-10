@@ -29,11 +29,6 @@
     "MissionTextTitle6": "E-commerce Solutions",
     "MissionTextDescription6": "Building and optimizing online stores with seamless payment integration."
   },
-  "services": {
-    "title": "Our Services",
-    "makeOrder": "Place an Order",
-    "includes": "Includes"
-  },
   "footer": {
     "rights": "All rights reserved.",
     "privacy": "Privacy Policy",
@@ -53,5 +48,19 @@
   "news": {
     "title": "Latest News",
     "close": "Close"
+  },
+
+  "services": {
+    "title": "Our Services",
+    "advantages": [
+      "We offer free consultations!",
+      "Send requests to any platform you want.",
+      "24/7 customer support available.",
+      "High-quality service at affordable prices."
+    ],
+    "price": "Price",
+    "discount": "Discount",
+    "makeOrder": "Place an Order",
+    "includes": "Includes"
   }
 }

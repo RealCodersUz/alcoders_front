@@ -133,6 +133,7 @@ const Home = () => {
             justifyContent: "center",
             textAlign: "center",
             color: "white",
+            marginTop: 30,
           }}
         >
           <video
@@ -154,7 +155,7 @@ const Home = () => {
             Your browser does not support the video tag.
           </video>
 
-          <div
+          {/* <div
             style={{
               position: "absolute",
               top: "0",
@@ -164,7 +165,7 @@ const Home = () => {
               background: "rgba(0, 0, 0, 0.5)",
               zIndex: "-1",
             }}
-          ></div>
+          ></div> */}
 
           <div style={{ position: "relative", zIndex: "1", maxWidth: "800px" }}>
             <h1
@@ -199,36 +200,145 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section>
-        <div className="container pt-5 w-100 ">
-          <h3 className="text-center">{t("services.title")}</h3>
-          {/* <h3 className="text-center pb-5">{t("services")}</h3> */}
-          <div className="coni gap-5 py-5 ">
+
+      <section className="row">
+        <div className="container pt-5 w-100 lg-col-5">
+          <h3 className="text-center fw-bold fs-1">{t("services.title")}</h3>
+          <div className="row gap-5 py-5 justify-content-center">
             {Array.isArray(service) &&
-              service.map((item) => (
-                <Cards
-                  key={item._id}
-                  id={item._id}
-                  url={item.image}
-                  title={getLocalizedText(item, "name", i18n.language)}
-                  subtitle={getLocalizedText(
-                    item,
-                    "description",
-                    i18n.language
-                  )}
-                  included={getLocalizedText(item, "included", i18n.language)}
-                  price={item.price}
-                  discount={item.discount}
-                />
-              ))}
+              service.map((item) => {
+                const languageKey =
+                  i18n.language === "uz_cyrl" ? "kr" : i18n.language;
+
+                const localizedName = getLocalizedText(
+                  item,
+                  "name",
+                  languageKey
+                );
+                const localizedDescription = getLocalizedText(
+                  item,
+                  "description",
+                  languageKey
+                );
+                const localizedIncluded = getLocalizedText(
+                  item,
+                  "included",
+                  languageKey
+                );
+
+                const discountedPrice = item.discount
+                  ? (item.price * (100 - item.discount)) / 100
+                  : item.price;
+
+                const advantages =
+                  t("services.advantages", { returnObjects: true }) || [];
+                const advantagesArray = Array.isArray(advantages)
+                  ? advantages
+                  : [];
+
+                return (
+                  <div
+                    key={item._id}
+                    className="col-lg-5 col-md-6 col-12 text-center"
+                  >
+                    <div
+                      className="card shadow-lg border-0 position-relative overflow-visible"
+                      style={{ width: "100%" }}
+                    >
+                      {/* Chegirma badge */}
+                      {item.discount > 0 && (
+                        <div
+                          className="position-absolute fw-bold rounded-circle d-flex align-items-center justify-content-center shadow-lg"
+                          style={{
+                            width: "80px",
+                            height: "80px",
+                            top: "15px",
+                            left: "10px",
+                            fontSize: "18px",
+                            border: "3px solid white",
+                            color: "#fff",
+                            background: "rgba(255, 0, 0, 0.85)",
+                            transform: "rotate(-15deg)",
+                            zIndex: 10,
+                          }}
+                        >
+                          -{item.discount}%
+                        </div>
+                      )}
+
+                      {/* Rasm va gradient overlay */}
+                      <div className="position-relative">
+                        <img
+                          src={item.image}
+                          className="card-img-top"
+                          alt={localizedName}
+                          style={{ width: "100%", objectFit: "cover" }}
+                        />
+                        <div
+                          className="position-absolute top-0 start-0 w-100 h-100"
+                          style={{
+                            background:
+                              "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)",
+                          }}
+                        />
+                      </div>
+
+                      <div className="card-body">
+                        <h5 className="card-title fw-bold">{localizedName}</h5>
+                        <p className="card-text">{localizedDescription}</p>
+
+                        <p className="card-text">
+                          {localizedIncluded.split(",").map((line, idx) => (
+                            <span key={idx} className="d-block">
+                              ✅ {line.trim()}
+                            </span>
+                          ))}
+                        </p>
+
+                        {/* Narxlar */}
+                        <p className="card-text fw-bold">
+                          💰 {t("services.price")}:{" "}
+                          {item.discount > 0 ? (
+                            <>
+                              <span className="text-muted text-decoration-line-through fs-5">
+                                {item.price}$
+                              </span>{" "}
+                              <span className="text-danger fs-4 fw-bold">
+                                {discountedPrice}$
+                              </span>
+                            </>
+                          ) : (
+                            <span className="fs-4 fw-bold">{item.price}$</span>
+                          )}
+                        </p>
+
+                        {/* Afzalliklar */}
+                        {advantagesArray.length > 0 && (
+                          <div className="mt-3">
+                            {advantagesArray.map((adv, idx) => (
+                              <p
+                                key={idx}
+                                className="card-text fw-bold text-success"
+                              >
+                                🌟 {adv}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </section>
-      <section>
-        <h2 className="text-center mb-4 py-5">{t("news.title")}</h2>
+
+      <section className="row">
+        <h2 className="text-center mb-4 py-5 ">{t("news.title")}</h2>
         <Row className="g-4 d-flex flex-row align-items-center justify-content-space-between">
           {news.map((item) => (
-            <Col md={4} lg={6} key={item._id} data-aos="fade-up">
+            <Col md={4} lg={6} key={item._id} data-aos="fade-up" clas>
               <Card
                 className="shadow-lg border-0"
                 onClick={() => handleShowModal(item)}
