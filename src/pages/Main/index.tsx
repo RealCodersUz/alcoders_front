@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./index.css";
 import { useTranslation } from "react-i18next";
@@ -52,6 +52,7 @@ const Home = () => {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const { i18n, t } = useTranslation();
   useEffect(() => {
@@ -78,6 +79,13 @@ const Home = () => {
       .catch((error) => console.log("API Error:", error));
   }, []);
 
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 2 * scrollRef.current.children[0].clientWidth + 32;
+      scrollRef.current.scrollLeft +=
+        direction === "left" ? -scrollAmount : scrollAmount;
+    }
+  };
   const getLocalizedTextForNews = (
     item: NewsItem,
     key: "name" | "description"
@@ -200,145 +208,137 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      <section className="row">
-        <div className="container pt-5 w-100 lg-col-5">
+      <section className="position-relative">
+        <div className="container pt-5">
           <h3 className="text-center fw-bold fs-1">{t("services.title")}</h3>
-          <div className="row gap-5 py-5 justify-content-center">
-            {Array.isArray(service) &&
-              service.map((item) => {
-                const languageKey =
-                  i18n.language === "uz_cyrl" ? "kr" : i18n.language;
 
-                const localizedName = getLocalizedText(
-                  item,
-                  "name",
-                  languageKey
-                );
-                const localizedDescription = getLocalizedText(
-                  item,
-                  "description",
-                  languageKey
-                );
-                const localizedIncluded = getLocalizedText(
-                  item,
-                  "included",
-                  languageKey
-                );
+          <button
+            className="position-absolute top-50 start-0 translate-middle-y btn btn-dark"
+            onClick={() => scroll("left")}
+            style={{
+              zIndex: 10,
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+            }}
+          >
+            {"<"}
+          </button>
 
-                const discountedPrice = item.discount
-                  ? (item.price * (100 - item.discount)) / 100
-                  : item.price;
+          <button
+            className="position-absolute top-50 end-0 translate-middle-y btn btn-dark"
+            onClick={() => scroll("right")}
+            style={{
+              zIndex: 10,
+              width: "50px",
+              height: "50px",
+              borderRadius: "50%",
+            }}
+          >
+            {">"}
+          </button>
 
-                const advantages =
-                  t("services.advantages", { returnObjects: true }) || [];
-                const advantagesArray = Array.isArray(advantages)
-                  ? advantages
-                  : [];
+          <div
+            ref={scrollRef}
+            className="d-flex gap-4 py-5 overflow-hidden"
+            style={{
+              scrollBehavior: "smooth",
+              scrollbarWidth: "none",
+              overflowX: "auto",
+              display: "flex",
+              flexWrap: "nowrap",
+              paddingBottom: "10px",
+            }}
+          >
+            {service.map((item) => {
+              const languageKey =
+                i18n.language === "uz_cyrl" ? "kr" : i18n.language;
+              const localizedName = getLocalizedText(item, "name", languageKey);
+              const localizedDescription = getLocalizedText(
+                item,
+                "description",
+                languageKey
+              );
+              const localizedIncluded = getLocalizedText(
+                item,
+                "included",
+                languageKey
+              );
 
-                return (
-                  <div
-                    key={item._id}
-                    className="col-lg-5 col-md-6 col-12 text-center"
-                  >
-                    <div
-                      className="card shadow-lg border-0 position-relative overflow-visible"
-                      style={{ width: "100%" }}
-                    >
-                      {/* Chegirma badge */}
-                      {item.discount > 0 && (
-                        <div
-                          className="position-absolute fw-bold rounded-circle d-flex align-items-center justify-content-center shadow-lg"
-                          style={{
-                            width: "80px",
-                            height: "80px",
-                            top: "15px",
-                            left: "10px",
-                            fontSize: "18px",
-                            border: "3px solid white",
-                            color: "#fff",
-                            background: "rgba(255, 0, 0, 0.85)",
-                            transform: "rotate(-15deg)",
-                            zIndex: 10,
-                          }}
-                        >
-                          -{item.discount}%
-                        </div>
-                      )}
+              const discountedPrice = item.discount
+                ? (item.price * (100 - item.discount)) / 100
+                : item.price;
 
-                      {/* Rasm va gradient overlay */}
-                      <div className="position-relative">
-                        <img
-                          src={item.image}
-                          className="card-img-top"
-                          alt={localizedName}
-                          style={{ width: "100%", objectFit: "cover" }}
-                        />
-                        <div
-                          className="position-absolute top-0 start-0 w-100 h-100"
-                          style={{
-                            background:
-                              "linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent)",
-                          }}
-                        />
+              return (
+                <div
+                  key={item._id}
+                  className="col-lg-4 col-md-6 col-12 flex-shrink-0"
+                  style={{
+                    width: "33%",
+                    minWidth: "280px",
+                    scrollSnapAlign: "start",
+                  }}
+                >
+                  <Card className="shadow-lg border-0 position-relative">
+                    {item.discount > 0 && (
+                      <div
+                        className="position-absolute fw-bold rounded px-2 py-1 text-white"
+                        style={{
+                          top: "10px",
+                          right: "10px",
+                          background: "red",
+                          zIndex: 10,
+                        }}
+                      >
+                        -{item.discount}%
                       </div>
-
-                      <div className="card-body">
-                        <h5 className="card-title fw-bold">{localizedName}</h5>
-                        <p className="card-text">{localizedDescription}</p>
-
-                        <p className="card-text">
-                          {localizedIncluded.split(",").map((line, idx) => (
-                            <span key={idx} className="d-block">
-                              ✅ {line.trim()}
+                    )}
+                    <Card.Img
+                      variant="top"
+                      src={item.image}
+                      alt={localizedName}
+                      style={{ height: "full", objectFit: "cover" }}
+                    />
+                    <Card.Body>
+                      <Card.Title className="fw-bold">
+                        {localizedName}
+                      </Card.Title>
+                      <Card.Text>{localizedDescription}</Card.Text>
+                      <Card.Text>
+                        {localizedIncluded.split(",").map((line, idx) => (
+                          <span key={idx} className="d-block">
+                            ✅ {line.trim()}
+                          </span>
+                        ))}
+                      </Card.Text>
+                      <Card.Text className="fw-bold">
+                        💰 {t("services.price")}:{" "}
+                        {item.discount > 0 ? (
+                          <>
+                            <span className="text-muted text-decoration-line-through fs-5">
+                              {item.price}$
+                            </span>{" "}
+                            <span className="text-danger fs-4 fw-bold">
+                              {discountedPrice}$
                             </span>
-                          ))}
-                        </p>
-
-                        {/* Narxlar */}
-                        <p className="card-text fw-bold">
-                          💰 {t("services.price")}:{" "}
-                          {item.discount > 0 ? (
-                            <>
-                              <span className="text-muted text-decoration-line-through fs-5">
-                                {item.price}$
-                              </span>{" "}
-                              <span className="text-danger fs-4 fw-bold">
-                                {discountedPrice}$
-                              </span>
-                            </>
-                          ) : (
-                            <span className="fs-4 fw-bold">{item.price}$</span>
-                          )}
-                        </p>
-
-                        {/* Afzalliklar */}
-                        {advantagesArray.length > 0 && (
-                          <div className="mt-3">
-                            {advantagesArray.map((adv, idx) => (
-                              <p
-                                key={idx}
-                                className="card-text fw-bold text-success"
-                              >
-                                🌟 {adv}
-                              </p>
-                            ))}
-                          </div>
+                          </>
+                        ) : (
+                          <span className="fs-4 fw-bold">{item.price}$</span>
                         )}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
-
       <section className="row">
         <h2 className="text-center mb-4 py-5 ">{t("news.title")}</h2>
-        <Row className="g-4 d-flex flex-row align-items-center justify-content-space-between">
+        <Row className="g-4 d-flex flex-row justify-content-space-between">
           {news.map((item) => (
-            <Col md={4} lg={6} key={item._id} data-aos="fade-up" clas>
+            <Col md={8} lg={4} key={item._id} data-aos="fade-up" clas>
               <Card
                 className="shadow-lg border-0"
                 onClick={() => handleShowModal(item)}
