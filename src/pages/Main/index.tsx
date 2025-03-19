@@ -4,9 +4,11 @@ import "./index.css";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import AOS from "aos";
+
 import "aos/dist/aos.css";
 // import i18n from "../../i18n";
 import { Button, Card, Col, Modal, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 interface ServiceItem {
   _id: string;
   name_uz: string;
@@ -54,6 +56,10 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
+  const navigate = useNavigate();
+  const hdleclick = (id: string): void => {
+    navigate(`/contact?id=${id}`);
+  };
   const { i18n, t } = useTranslation();
   useEffect(() => {
     AOS.init({ duration: 100, offset: 0, delay: 0 });
@@ -326,6 +332,14 @@ const Home = () => {
                           <span className="fs-4 fw-bold">{item.price}$</span>
                         )}
                       </Card.Text>
+                      <Button
+                        variant="outline-primary"
+                        onClick={() => {
+                          hdleclick(item._id);
+                        }}
+                      >
+                        {t("services.makeOrder")}
+                      </Button>
                     </Card.Body>
                   </Card>
                 </div>
