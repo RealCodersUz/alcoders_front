@@ -81,7 +81,7 @@ const Home = () => {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 2 * scrollRef.current.children[0].clientWidth + 32;
+      const scrollAmount = scrollRef.current.children[0].clientWidth + 22;
       scrollRef.current.scrollLeft +=
         direction === "left" ? -scrollAmount : scrollAmount;
     }
@@ -247,7 +247,7 @@ const Home = () => {
               overflowX: "auto",
               display: "flex",
               flexWrap: "nowrap",
-              paddingBottom: "10px",
+              padding: "10px",
             }}
           >
             {service.map((item) => {

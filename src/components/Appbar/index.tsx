@@ -90,7 +90,7 @@ const Appbar = () => {
                         key={lng}
                         onClick={() => {
                           changeLanguage(lng);
-                          setExpanded(false); // Tilni tanlaganda ham menyu yopiladi
+                          setExpanded(false);
                         }}
                       >
                         <img
