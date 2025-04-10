@@ -35,7 +35,7 @@ function App() {
           <Route path="/contact/*" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/news" element={<NewsPage />} />
-          <Route path="*" element={<NotFound />} />
+{/*           <Route path="*" element={<NotFound />} /> */}
            <Route path="/notfound" element={<NotFound />} />
           <Route path="/terms-of-service" element={<TermsAndConditions />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
